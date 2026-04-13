@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redis Pub/Sub Demo</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div>
+          <h1>Redis Pub/Sub Demo</h1>
+          <p class="subtitle">Fan-out via Pub/Sub, temps reel via WebSocket</p>
+        </div>
+        <div class="pill" id="server-pill">server_id: ...</div>
+      </header>
+
+      <section class="panel">
+        <h2>Publier un message</h2>
+        <div class="publish">
+          <input id="message-input" type="text" placeholder="Votre message" />
+          <button id="publish-btn">Publier</button>
+        </div>
+        <div class="status" id="publish-status"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Etat initial</h2>
+        <div id="initial-state" class="list"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Updates temps reel</h2>
+        <div id="updates" class="list"></div>
+      </section>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
