@@ -6,4 +6,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # (client HTML, templates, etc.) qui doivent aussi être dans l'image.
 COPY . .
 ENV PORT=8080
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--worker-class", "eventlet", "--workers", "1", "--timeout", "0", "--keep-alive", "5", "main:app"]
+ENV EVENTLET_NO_GREENDNS=yes
+ENV GRPC_DNS_RESOLVER=native
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--worker-class", "gthread", "--threads", "8", "--workers", "1", "--timeout", "0", "--keep-alive", "5", "main:app"]

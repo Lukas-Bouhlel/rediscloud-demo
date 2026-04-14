@@ -3,40 +3,45 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Redis Pub/Sub Demo</title>
+    <title>Redis Pub/Sub Monitor</title>
     <link rel="stylesheet" href="/styles.css" />
     <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <div>
-          <h1>Redis Pub/Sub Demo</h1>
-          <p class="subtitle">Fan-out via Pub/Sub, temps reel via WebSocket</p>
+        <h1>Redis Pub/Sub Monitor</h1>
+        <div class="header-meta">
+          <div class="pill" id="server-pill">server_id: ...</div>
+          <div class="pill muted" id="socket-pill">socket: connecting...</div>
         </div>
-        <div class="pill" id="server-pill">server_id: ...</div>
       </header>
 
-      <section class="panel">
-        <h2>Publier un message</h2>
-        <div class="publish">
+      <section class="panel compact">
+        <form class="publish" id="publish-form">
           <input id="message-input" type="text" placeholder="Votre message" />
-          <button id="publish-btn">Publier</button>
+          <button id="publish-btn" type="submit">Publier</button>
+        </form>
+        <div class="status" id="publish-status">Pret</div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Messages (recent -&gt; ancien)</h2>
+          <div class="counter" id="message-count">0</div>
         </div>
-        <div class="status" id="publish-status"></div>
+        <div id="messages-feed" class="feed"></div>
       </section>
 
       <section class="panel">
-        <h2>Etat initial</h2>
-        <div id="initial-state" class="list"></div>
-      </section>
-
-      <section class="panel">
-        <h2>Updates temps reel</h2>
-        <div id="updates" class="list"></div>
+        <div class="panel-head">
+          <h2>Debug live</h2>
+          <button id="clear-debug-btn" class="ghost" type="button">Vider</button>
+        </div>
+        <div id="debug-log" class="debug-log"></div>
       </section>
     </div>
 
-    <script src="/app.js"></script>
+    <script src="/app.js?v=4"></script>
   </body>
 </html>
